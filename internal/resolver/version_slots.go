@@ -222,6 +222,7 @@ func (s *Service) versionSlotsWithResults(ctx context.Context, req core.ResolveR
 				}
 			}
 		}
+		label = s.pseEmptySlotLabel(label, slot, labels && searchWarm && placeholder && i > 0) // PSE-HOOK: emplacements vides renommés — voir docs/pse/FORK.fr.md
 		v := core.ReleaseVariant{ID: slot.id(), Label: label, Auto: i == 0, Edition: r.Info.Edition, Release: r, Info: info}
 		if labels {
 			v.Remembered = i == 0 && autoRemembered
