@@ -26,8 +26,20 @@ export function compareUpdateVersions(a: string, b: string): number | null {
 // Ajouter les nouveautés ici à chaque livraison, de la plus récente à la plus ancienne.
 export const REMIX_UPDATES = [
   {
-    id: "2026-11-28-final-episode-tag",
+    id: "2026-11-28-history-quick-trace",
     version: "current",
+    date: "2026-11-28",
+    title: ["History : préchauffages identifiés", "History: warm-ups identified"],
+    items: [
+      [
+        "Avec la recherche rapide des sources, le détail d’une entrée History indique désormais l’appareil, le spectateur, les limites de qualité et s’il s’agit d’un préchauffage, comme sur la recherche normale. Les lectures qui relancent une recherche au lieu de reprendre le préchauffage de leur fiche sont journalisées pour corriger les doubles entrées.",
+        "With quick source search, a History entry’s detail now shows the device, viewer, quality limits and whether it was a warm-up, as with normal search. Playbacks that search again instead of reusing their detail page’s warm-up are logged, to fix duplicate entries.",
+      ],
+    ],
+  },
+  {
+    id: "2026-11-28-final-episode-tag",
+    version: "0.2.37-remix.160.1",
     date: "2026-11-28",
     title: ["Derniers épisodes tagués FiNAL", "Last episodes tagged FiNAL"],
     items: [

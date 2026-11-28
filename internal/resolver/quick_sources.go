@@ -20,7 +20,15 @@ func (s *Service) resolveQuick(ctx context.Context, req core.ResolveRequest, pro
 	// select a source before the earlier enabled ones have been exhausted.
 	req.Prefer, req.PreferredOnly = "", false
 	search := s.searchRequest(ctx, req.Title)
-	trace := Trace{TitleKey: req.Title.Key, TitleName: consoleTitleName(req.Title), Profile: profile.Name, At: s.now(), Failover: len(req.Exclude) > 0}
+	// PSE-HOOK: trace complète de la recherche rapide (#216) — voir docs/pse/FORK.fr.md
+	// Mêmes champs d'identification que resolve() : History distingue ainsi
+	// un préchauffage d'une lecture, et le spectateur et l'appareil.
+	trace := Trace{TitleKey: req.Title.Key, TitleName: consoleTitleName(req.Title), Profile: profile.Name, At: s.now(), Failover: len(req.Exclude) > 0,
+		ClientID: req.Client.ClientID, Speculative: core.IsSpeculative(ctx) || core.SpeculativeIndexerWork(ctx)}
+	if req.User != nil {
+		trace.UserID = req.User.ID
+	}
+	trace.Limits = &TraceLimits{ProfileMinHeight: profile.MinHeight, ProfileMaxHeight: profile.MaxHeight, ProfileConfiguredMaxHeight: traceConfiguredMaxHeight(profile), ClientMaxHeight: req.Client.MaxHeight, ClientMaxBitrateKbps: req.Client.MaxBitrateKbps, AllowHDR: profile.AllowHDR, AllowDolbyVision: profile.AllowDolbyVision}
 	started := time.Now()
 	defer func() {
 		trace.TotalDuration = time.Since(started)
@@ -28,7 +36,8 @@ func (s *Service) resolveQuick(ctx context.Context, req core.ResolveRequest, pro
 			s.logPlayDecision(trace)
 		}
 		s.addTrace(trace)
-		s.recordHistory(ctx, trace)
+		history := compactTrace(trace)
+		s.persistBookkeeping(ctx, func(ctx context.Context) { s.recordHistory(ctx, history) })
 	}()
 	seenSources := map[string]bool{}
 	seen := map[string]bool{}

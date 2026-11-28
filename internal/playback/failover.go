@@ -150,7 +150,7 @@ func (m *Manager) openInitial(ctx context.Context, s *session, profile core.Qual
 		original = s.title.Language
 	}
 	isSlot := core.IsExplicitVersionSlotSelector(s.prefer)
-	res, cached, fromResume := m.preparedResolution(ctx, s, profile, original, s.prefer)
+	res, cached, fromResume := m.psePreparedResolution(ctx, s, profile, original, s.prefer) // PSE-HOOK: diagnostic des résolutions en double — voir docs/pse/FORK.fr.md
 	if res != nil && s.prefer == "" && m.verifiedFilesFirst() && isAddonStream(res.Release) {
 		res, cached, fromResume = nil, nil, false
 	}
