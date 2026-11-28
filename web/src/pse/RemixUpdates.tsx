@@ -26,8 +26,23 @@ export function compareUpdateVersions(a: string, b: string): number | null {
 // Ajouter les nouveautés ici à chaque livraison, de la plus récente à la plus ancienne.
 export const REMIX_UPDATES = [
   {
-    id: "2026-11-28-final-episode-tag",
+    id: "2026-11-28-empty-version-slots",
     version: "current",
+    date: "2026-11-28",
+    title: [
+      "« Lire la version » : versions absentes signalées",
+      "“Play version”: missing versions shown as such",
+    ],
+    items: [
+      [
+        "Quand un titre a moins de releases que d’emplacements prévus dans « Lire la version », les lignes en trop ne s’appellent plus « Same-quality version 1 » ou « Other version 2 » avec un débit inventé : une fois la recherche terminée, elles indiquent « Pas d’autre version ». Le menu garde ses lignes et leur ordre ; en choisir une lance la version Auto, comme avant.",
+        "When a title has fewer releases than the slots planned in “Play version”, the extra rows are no longer called “Same-quality version 1” or “Other version 2” with an invented bitrate: once the search is done, they read “No other version”. The menu keeps its rows and their order; picking one plays the Auto version, as before.",
+      ],
+    ],
+  },
+  {
+    id: "2026-11-28-final-episode-tag",
+    version: "0.2.37-remix.160.1",
     date: "2026-11-28",
     title: ["Derniers épisodes tagués FiNAL", "Last episodes tagged FiNAL"],
     items: [
