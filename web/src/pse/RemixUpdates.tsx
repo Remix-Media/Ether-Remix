@@ -26,8 +26,20 @@ export function compareUpdateVersions(a: string, b: string): number | null {
 // Ajouter les nouveautés ici à chaque livraison, de la plus récente à la plus ancienne.
 export const REMIX_UPDATES = [
   {
-    id: "2026-11-27-alko-api",
+    id: "2026-11-28-final-episode-tag",
     version: "current",
+    date: "2026-11-28",
+    title: ["Derniers épisodes tagués FiNAL", "Last episodes tagged FiNAL"],
+    items: [
+      [
+        "Une release comme « Show.S03E08.FiNAL.MULTi.1080p » n’est plus rejetée pour « titre d’épisode différent » : le tag FiNAL n’est plus lu comme le titre de l’épisode. Un épisode dont le titre contient « Final » (« Final Destination ») est comparé comme avant.",
+        "A release such as “Show.S03E08.FiNAL.MULTi.1080p” is no longer rejected for a different episode title: the FiNAL tag is no longer read as the episode title. An episode whose title contains “Final” (“Final Destination”) is compared as before.",
+      ],
+    ],
+  },
+  {
+    id: "2026-11-27-alko-api",
+    version: "0.2.37-remix.159.1",
     date: "2026-11-27",
     title: ["Alkodiques par l’API de StreamFusion", "Alkodiques through the StreamFusion API"],
     items: [

@@ -151,6 +151,7 @@ func episodeTitleMatches(name, want string, requireEvidence bool) bool {
 		}
 		words = append(words, w)
 	}
+	words = pseDropEpisodeReleaseTags(words, want) // PSE-HOOK: tag FiNAL pris pour un titre d'épisode — voir docs/pse/FORK.fr.md
 	if len(words) == 0 {
 		return !requireEvidence
 	}
