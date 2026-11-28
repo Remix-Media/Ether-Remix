@@ -193,6 +193,9 @@ func (s *Server) plezyFirstPlay(ctx, reqCtx context.Context, pr *Request, t *fro
 		}
 		play = true
 	}
+	if !play && s.psePlezyNoRelease(pr, t) { // PSE-HOOK: titre sans release, relecture de fiche Plezy — voir docs/pse/FORK.fr.md
+		return
+	}
 	if !play && !s.plezyReasks.checkOrArm(k, s.now()) {
 		// Initial detail open or follow-up burst fetch inside
 		// plezyReaskMinAge: never wait; this response goes out

@@ -22,3 +22,10 @@ const (
 type LazyStreamDecider interface {
 	WarmDecision(ctx context.Context, credential string, req PlanRequest, budget time.Duration) WarmDecision
 }
+
+// NoReleaseMemo is optionally implemented by the playback manager: it tells
+// whether the warm-up of a title for this viewer and device recently found
+// that no release exists (internal/playback/pse_warm_decision.go).
+type NoReleaseMemo interface {
+	PSENoReleaseRecent(user *User, key RatingKey, caps ClientCaps) bool
+}

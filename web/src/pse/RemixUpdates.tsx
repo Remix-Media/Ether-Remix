@@ -26,8 +26,20 @@ export function compareUpdateVersions(a: string, b: string): number | null {
 // Ajouter les nouveautés ici à chaque livraison, de la plus récente à la plus ancienne.
 export const REMIX_UPDATES = [
   {
-    id: "2026-11-28-final-episode-tag",
+    id: "2026-11-28-plezy-no-release",
     version: "current",
+    date: "2026-11-28",
+    title: ["Plezy : moins de recherches inutiles", "Plezy: fewer useless searches"],
+    items: [
+      [
+        "Quand aucune release n’existe pour un épisode (souvent un spécial), Plezy ne relance plus une recherche à chaque nouvel affichage de sa fiche ou de la page de la série. History n’affiche plus ces fausses lectures en échec. Lancer réellement l’épisode le recherche toujours.",
+        "When no release exists for an episode (often a special), Plezy no longer triggers a search each time its detail or the show page is shown again. History no longer lists these false failed plays. Actually playing the episode still searches for it.",
+      ],
+    ],
+  },
+  {
+    id: "2026-11-28-final-episode-tag",
+    version: "0.2.37-remix.160.1",
     date: "2026-11-28",
     title: ["Derniers épisodes tagués FiNAL", "Last episodes tagged FiNAL"],
     items: [

@@ -109,3 +109,13 @@ func (m *Manager) WaitWarmDecision(ctx context.Context, user *core.User, key cor
 	}
 	return core.WarmUnknown
 }
+
+// PSENoReleaseRecent implements frontend.NoReleaseMemo: the warm-up of this
+// viewer, device and title found no release less than pseNoReleaseTTL ago.
+// A Plezy metadata re-ask for such a title is browsing, not play intent.
+func (m *Manager) PSENoReleaseRecent(user *core.User, key core.RatingKey, caps core.ClientCaps) bool {
+	if user == nil || caps.ClientID == "" {
+		return false
+	}
+	return m.pseNoReleaseRecent(identity{userID: user.ID, clientID: caps.ClientID, key: key, surface: m.playbackSurface(string(caps.Protocol))})
+}
